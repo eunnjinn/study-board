@@ -9,5 +9,5 @@ public class StudyBoardApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StudyBoardApplication.class, args);
 	}
-
+//kkkk
 }
