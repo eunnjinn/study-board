@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class BoardController {
     @RequestMapping("/")
     public String Hello(){
-        return "helvvlo";
+        return "helvvlod";
     }
 }
