@@ -5,10 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
+@RequestMapping("/boards/**")
+//@RestController
 public class BoardController {
-    @RequestMapping("/")
+    @GetMapping("/hello")
     public String Hello(){
-        return "helvvlod";
+        return "/boards/hello";
     }
 }
