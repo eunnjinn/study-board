@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class PostRespone {
+public class PostResponse {
 
     private String post_idx;            //게시글인덱스
     private String user_id;             //사용자아이디
