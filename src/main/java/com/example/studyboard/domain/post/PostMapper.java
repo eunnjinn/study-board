@@ -14,11 +14,10 @@ public interface PostMapper {
 
     /**
      * 게시글 상세정보 조회
-     * @param user_id-PK
+     * @param post_idx-PK
      * @return 게시글 상세정보
      */
-    PostResponse findById(Long user_id);
-
+    PostResponse findByPostIdx(String post_idx);
 
     /**
      * 게시글 수정
@@ -30,13 +29,13 @@ public interface PostMapper {
      * 게시글 삭제
      * @param post_idx -pk
      */
-    void deletByPostIdx(String post_idx);
+    void deleteByPostIdx(String post_idx);
 
     /**
      * 게시글 리스트 조회
      * @return 게시글 리스트
      */
-    List<PostResponse> finaAll();
+    List<PostResponse> findAll();
 
     /**
      * 게시글 수 카운팅
