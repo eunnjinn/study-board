@@ -21,7 +21,6 @@ public class PostMapperTest {
     @Test
     void save(){
         PostRequest params = new PostRequest();
-        params.setPost_idx("00001");
         params.setUser_id("jin");
         params.setTitle("No.1 Post Title");
         params.setContent("No.1 Post Content");
@@ -35,7 +34,7 @@ public class PostMapperTest {
 
     @Test
     void findByPostIdx(){
-        PostResponse post = postMapper.findByPostIdx("00001");
+        PostResponse post = postMapper.findByPostIdx(1L);
         try{
             String postJson = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(post);
             System.out.println(postJson);
@@ -48,5 +47,28 @@ public class PostMapperTest {
     void update(){
         //1. Modify post
         PostRequest params = new PostRequest();
+        params.setPost_idx(1L);
+        params.setUser_id("jang");
+        params.setTitle("No.1 title modify");
+        params.setContent("content modify");
+        params.setName("tester2");
+        params.setCode(2);
+        postMapper.update(params);
+
+        PostResponse post = postMapper.findByPostIdx(1L);
+        try{
+            String postJson = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(post);
+            System.out.println(postJson);
+
+        }catch(JsonProcessingException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    void delete(){
+        System.out.println("Total posts before deletion: " + postMapper.findAll().size() + ".");
+        postMapper.deleteByPostIdx(1L);
+        System.out.println("Total posts after deletion: " + postMapper.findAll().size() + ".");
     }
 }

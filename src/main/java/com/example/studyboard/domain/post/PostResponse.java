@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 @Getter
 public class PostResponse {
 
-    private String post_idx;            //게시글인덱스
+    private Long post_idx;            //게시글인덱스
     private String user_id;             //사용자아이디
     private String title;               //제목
     private String content;             //내용
