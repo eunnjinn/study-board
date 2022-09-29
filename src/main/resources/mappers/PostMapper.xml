@@ -19,7 +19,7 @@
 
 
     <!-- 게시글 저장 -->
-    <insert id="save" parameterType="com.example.studyboard.domain.post.PostRequest">
+    <insert id="save" parameterType="com.example.studyboard.domain.post.PostRequest" useGeneratedKeys="true" keyProperty="post_idx">
         INSERT INTO tb_post (
         <include refid="postColumns" />
         ) VALUES (
@@ -38,7 +38,7 @@
 
 
     <!-- 게시글 상세정보 조회 -->
-    <select id="findByPostIdx" parameterType="String" resultType="com.example.studyboard.domain.post.PostResponse">
+    <select id="findByPostIdx" parameterType="Long" resultType="com.example.studyboard.domain.post.PostResponse">
         SELECT
         <include refid="postColumns" />
         FROM
@@ -63,7 +63,7 @@
 
 
     <!-- 게시글 삭제 -->
-    <delete id="deleteByPostIdx" parameterType="String">
+    <delete id="deleteByPostIdx" parameterType="Long">
         UPDATE tb_post
         SET
         delete_yn = 1

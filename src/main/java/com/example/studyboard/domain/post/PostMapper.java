@@ -17,7 +17,7 @@ public interface PostMapper {
      * @param post_idx-PK
      * @return 게시글 상세정보
      */
-    PostResponse findByPostIdx(String post_idx);
+    PostResponse findByPostIdx(Long post_idx);
 
     /**
      * 게시글 수정
@@ -29,7 +29,7 @@ public interface PostMapper {
      * 게시글 삭제
      * @param post_idx -pk
      */
-    void deleteByPostIdx(String post_idx);
+    void deleteByPostIdx(Long post_idx);
 
     /**
      * 게시글 리스트 조회

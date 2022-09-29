@@ -6,7 +6,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class PostRequest {
-    private String post_idx;
+    private Long post_idx;
     private String user_id;
     private String title;
     private String content;
