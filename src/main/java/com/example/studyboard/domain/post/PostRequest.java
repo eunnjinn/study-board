@@ -11,5 +11,5 @@ public class PostRequest {
     private String title;
     private String content;
     private String name;
-    private int code;
+    private Boolean ncode;
 }

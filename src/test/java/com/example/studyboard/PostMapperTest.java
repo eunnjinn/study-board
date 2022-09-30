@@ -25,7 +25,7 @@ public class PostMapperTest {
         params.setTitle("No.1 Post Title");
         params.setContent("No.1 Post Content");
         params.setName("Tester");
-        params.setCode(1);
+        params.setNcode(true);
         postMapper.save(params);
 
         List<PostResponse> posts = postMapper.findAll();
@@ -52,7 +52,7 @@ public class PostMapperTest {
         params.setTitle("No.1 title modify");
         params.setContent("content modify");
         params.setName("tester2");
-        params.setCode(2);
+        params.setNcode(false);
         postMapper.update(params);
 
         PostResponse post = postMapper.findByPostIdx(1L);

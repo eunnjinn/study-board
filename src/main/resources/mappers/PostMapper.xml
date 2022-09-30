@@ -11,7 +11,7 @@
         , content
         , name
         , view_cnt
-        , code
+        , ncode
         , delete_yn
         , created_date
         , modified_date
@@ -29,7 +29,7 @@
         , #{content}
         , #{name}
         , 0
-        , #{code}
+        , #{ncode}
         , 0
         , NOW()
         , NULL
@@ -56,7 +56,7 @@
         , title = #{title}
         , content = #{content}
         , name = #{name}
-        , code = #{code}
+        , ncode = #{ncode}
         WHERE
         post_idx = #{post_idx}
     </update>

@@ -26,7 +26,7 @@ public class PostService {
      * @param post_idx-PK
      * @return 게시글 상세 정보
      */
-    public PostResponse findByPostidx(final Long post_idx){
+    public PostResponse findByPostIdx(final Long post_idx){
         return postMapper.findByPostIdx(post_idx);
     }
 
@@ -57,21 +57,3 @@ public class PostService {
         return postMapper.findAll();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
