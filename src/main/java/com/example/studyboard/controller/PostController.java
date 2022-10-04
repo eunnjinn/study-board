@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@Controller
+@Controller //ui를 담당하는 컨트롤러 클래스임을 의미
 @RequiredArgsConstructor
 public class PostController {
     private final PostService postService;
 
     //게시글 작성
     @GetMapping("/post/write.do")
-    public String openPostWrite(@RequestParam(value = "post_idx", required = false) final Long post_idx, Model model) {
-        if (post_idx != null) {
-            PostResponse post = postService.findByPostIdx(post_idx);
+    public String openPostWrite(@RequestParam(value = "id", required = false) final Long id, Model model) {
+        if (id != null) {
+            PostResponse post = postService.findPostById(id);
             model.addAttribute("post", post);
         }
         return "post/write";
@@ -41,12 +41,28 @@ public class PostController {
         return "post/list";
     }
 
-
     // 게시글 상세 페이지
     @GetMapping("/post/view.do")
-    public String openPostView(@RequestParam final Long post_idx, Model model) {
-        PostResponse post = postService.findByPostIdx(post_idx);
+    public String openPostView(@RequestParam final Long id, Model model) {
+        PostResponse post = postService.findPostById(id);
         model.addAttribute("post", post);
         return "post/view";
     }
+
+    // 기존 게시글 수정
+    @PostMapping("/post/update.do")
+    public String updatePost(final PostRequest params) {
+        postService.updatePost(params);
+        return "redirect:/post/list.do";
+    }
+
+    // 게시글 삭제
+    @PostMapping("/post/delete.do")
+    public String deletePost(@RequestParam final Long id) {
+        postService.deletePost(id);
+        return "redirect:/post/list.do";
+    }
+
 }
+
+

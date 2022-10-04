@@ -21,11 +21,11 @@ public class PostMapperTest {
     @Test
     void save(){
         PostRequest params = new PostRequest();
-        params.setUser_id("jin");
-        params.setTitle("No.1 Post Title");
-        params.setContent("No.1 Post Content");
+        params.setUid("jin");
+        params.setTitle("No.2 Post Title");
+        params.setContent("No.2 Post Content");
         params.setName("Tester");
-        params.setNcode(true);
+        params.setNcode(false);
         postMapper.save(params);
 
         List<PostResponse> posts = postMapper.findAll();
@@ -33,8 +33,8 @@ public class PostMapperTest {
     }
 
     @Test
-    void findByPostIdx(){
-        PostResponse post = postMapper.findByPostIdx(1L);
+    void findById(){
+        PostResponse post = postMapper.findById(1L);
         try{
             String postJson = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(post);
             System.out.println(postJson);
@@ -47,15 +47,15 @@ public class PostMapperTest {
     void update(){
         //1. Modify post
         PostRequest params = new PostRequest();
-        params.setPost_idx(1L);
-        params.setUser_id("jang");
+        params.setId(1L);
+        params.setUid("jang");
         params.setTitle("No.1 title modify");
         params.setContent("content modify");
         params.setName("tester2");
         params.setNcode(false);
         postMapper.update(params);
 
-        PostResponse post = postMapper.findByPostIdx(1L);
+        PostResponse post = postMapper.findById(1L);
         try{
             String postJson = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(post);
             System.out.println(postJson);
@@ -67,8 +67,8 @@ public class PostMapperTest {
 
     @Test
     void delete(){
-        System.out.println("Total posts before deletion: " + postMapper.findAll().size() + ".");
-        postMapper.deleteByPostIdx(1L);
-        System.out.println("Total posts after deletion: " + postMapper.findAll().size() + ".");
+        System.out.println("===Total posts before deletion: " + postMapper.findAll().size() + ".");
+        postMapper.deleteById(1L);
+        System.out.println("====Total posts after deletion: " + postMapper.findAll().size() + ".");
     }
 }

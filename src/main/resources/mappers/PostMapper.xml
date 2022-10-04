@@ -5,8 +5,8 @@
 
     <!-- tb_post 테이블 전체 컬럼 -->
     <sql id="postColumns">
-        post_idx
-        , user_id
+        id
+        , uid
         , title
         , content
         , name
@@ -19,12 +19,12 @@
 
 
     <!-- 게시글 저장 -->
-    <insert id="save" parameterType="com.example.studyboard.domain.post.PostRequest" useGeneratedKeys="true" keyProperty="post_idx">
+    <insert id="save" parameterType="com.example.studyboard.domain.post.PostRequest"  useGeneratedKeys="true" keyProperty="id">
         INSERT INTO tb_post (
         <include refid="postColumns" />
         ) VALUES (
-        #{post_idx}
-        , #{user_id}
+        #{id}
+        , #{uid}
         , #{title}
         , #{content}
         , #{name}
@@ -38,13 +38,13 @@
 
 
     <!-- 게시글 상세정보 조회 -->
-    <select id="findByPostIdx" parameterType="Long" resultType="com.example.studyboard.domain.post.PostResponse">
+    <select id="findById" parameterType="long" resultType="com.example.studyboard.domain.post.PostResponse">
         SELECT
         <include refid="postColumns" />
         FROM
         tb_post
         WHERE
-        post_idx = #{value}
+        id = #{id}
     </select>
 
 
@@ -53,22 +53,23 @@
         UPDATE tb_post
         SET
         modified_date = NOW()
+        , uid = #{uid}
         , title = #{title}
         , content = #{content}
         , name = #{name}
         , ncode = #{ncode}
         WHERE
-        post_idx = #{post_idx}
+        id = #{id}
     </update>
 
 
     <!-- 게시글 삭제 -->
-    <delete id="deleteByPostIdx" parameterType="Long">
+    <delete id="deleteById" parameterType="long">
         UPDATE tb_post
         SET
         delete_yn = 1
         WHERE
-        post_idx = #{post_idx}
+        id = #{id}
     </delete>
 
 
@@ -81,7 +82,7 @@
         WHERE
         delete_yn = 0
         ORDER BY
-        post_idx DESC
+        id DESC
     </select>
 
 </mapper>

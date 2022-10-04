@@ -15,11 +15,11 @@ public class PostServiceTest {
     @Test
     void save(){
         PostRequest params = new PostRequest();
-        params.setUser_id("eunjin");
+        params.setUid("eunjin");
         params.setTitle("게시글제목");
         params.setContent("내용");
         params.setName("테스터");
-        params.setNcode(true);
+        params.setNcode(false);
         postService.savePost(params);
 
     }

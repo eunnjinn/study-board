@@ -21,6 +21,13 @@
     </div>
 
     <div class="form-group">
+      <label class="col-sm-2 control-label">아이디</label>
+      <div class="col-sm-10">
+        <p class="form-control" id="uid" th:text="${post.uid}"></p>
+      </div>
+    </div>
+
+    <div class="form-group">
       <label class="col-sm-2 control-label">내용</label>
       <div class="col-sm-10">
         <p class="form-control" id="content" th:text="${post.content}"></p>
@@ -43,7 +50,7 @@
 
     <div class="btn_wrap text-center">
       <a th:href="@{/post/list.do}" class="btn btn-default waves-effect waves-light">뒤로가기</a>
-      <a th:href="@{/post/write.do( id=${post.post_idx} )}" class="btn btn-primary waves-effect waves-light">수정하기</a>
+      <a th:href="@{/post/write.do( id=${post.id} )}" class="btn btn-primary waves-effect waves-light">수정하기</a>
       <button type="button" class="btn btn-danger waves-effect waves-light" onclick="deletePost();">삭제하기</button>
     </div>
   </div>
@@ -79,5 +86,31 @@
       </form>
     </div>
   </div>
+</th:block>
+
+<th:block layout:fragment="script">
+  <script th:inline="javascript">
+        /*<![CDATA[*/
+
+            // 게시글 삭제
+            function deletePost() {
+                const id = [[ ${post.id} ]];
+                if ( !confirm(id + "번 게시글을 삭제할까요?") ) {
+                    return false;
+                }
+
+                const formHtml = `
+                    <form id="deleteForm" action="/post/delete.do" method="post">
+                        <input type="hidden" id="id" name="id" value="${id}" />
+                    </form>
+                `;
+                const doc = new DOMParser().parseFromString(formHtml, 'text/html');
+                const form = doc.body.firstChild;
+                document.body.append(form);
+                document.getElementById('deleteForm').submit();
+            }
+
+        /*]]>*/
+        </script>
 </th:block>
 </html>
