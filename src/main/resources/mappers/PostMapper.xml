@@ -82,7 +82,7 @@
         WHERE
         delete_yn = 0
         ORDER BY
-        field(ncode, 1,0), id DESC <!--공지사항 먼저 정렬, 다음은 게시글 인덱스 역순으로 정렬-->
+        field(ncode, 1,0), id DESC <!--공지사항 먼저 정렬, 다음은 게시글인덱스 역순으로 정렬-->
     </select>
 
 </mapper>
